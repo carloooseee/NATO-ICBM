@@ -20,6 +20,7 @@ countryForm.addEventListener('submit', (event) => {
                 .then(data => {
                     const country = data[0];
 
+                    console.log(country.name + ' has a population of ' + country.population);
                     const countryDiv = document.createElement('div');
                     const name = document.createElement('h2');
                     const flag = document.createElement('img');
@@ -69,7 +70,6 @@ countriesDiv.addEventListener('click', (event) => {
         nameElement.textContent = "Country " + nameElement.textContent + " is Eliminated"
 
         const flagElement = countryDiv.querySelector('.flag');
-        const imageUrl = "https://static.vecteezy.com/system/resources/previews/035/589/673/non_2x/ai-generated-an-explosion-isolated-on-a-transparent-background-free-png.png"
-        flagElement.style.background = `url("${imageUrl}")`;
+        flagElement.style.background = url("https://static.vecteezy.com/system/resources/previews/035/589/673/non_2x/ai-generated-an-explosion-isolated-on-a-transparent-background-free-png.png");
     }
 });
