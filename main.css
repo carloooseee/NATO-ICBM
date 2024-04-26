@@ -1,0 +1,84 @@
+*{
+    /* border: 1px solid; */
+    overflow: hidden;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(nato.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+h1 {
+    text-align:center;
+}
+.formContainer *{
+    margin: 5px;
+}
+input{
+    padding: 10px;
+}
+.mainContainer{
+    width: 30%;
+    background-color: #ffffff;
+    padding: 1em;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.natoLogo{
+    width: 100px;
+}
+#countries{
+    width: 100%;
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+}
+.country {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+}
+.country img {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+.flag{
+    width: 100px;
+}
+button{
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: #004791;
+    border-radius: 5px;
+    padding: 13px;
+}
+.eliminateButton:hover{
+    background-color: #002954;
+}
+@media screen and (max-width: 1200px){
+    .mainContainer{
+        width: 50%;
+    }
+}
+@media screen and (max-width: 600px){
+    .mainContainer{
+        width: 90%;
+    }
+}

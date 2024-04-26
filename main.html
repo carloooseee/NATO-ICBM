@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Information</title>
     <link rel="stylesheet" href="main.css">
-    <title>Capstone API Call</title>
 </head>
 <body>
-    <h1>Country Information</h1>
-    <div id="countries"></div>
-
+    <div class="mainContainer">
+        <img class="natoLogo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTjUlboz5fLwk_en9STb8LLpJciS1BJ8hYmbzaT2rgoQ&s" alt="nato logo">
+        <img src="" alt="">
+        <h1>NATO ICBM Command</h1>
+        <p>secure | contain | protect</p>
+        <form class="formContainer" id="countryForm">
+            <label for="countryInput">Enter country to be eliminated</label><br>
+            <input type="text" id="countryInput" name="countryInput">
+            <button type="submit">Select Country</button>
+        </form>
+        <div id="countries"></div>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
