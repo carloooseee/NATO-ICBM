@@ -43,12 +43,12 @@ countryForm.addEventListener('submit', (event) => {
             console.log('This is an ally country');
             const warningMessage = document.getElementById('warningMessage');
             if (warningMessage) {
-                warningMessage.innerText = 'This is an ally country';
+                warningMessage.innerText = 'This is an allied country!';
             }
         }
         else{
-            countries.forEach(countryName => {
-                fetch(`https://restcountries.com/v3.1/name/${countryName}`)
+            warningMessage.innerText = '';
+            fetch(`https://restcountries.com/v3.1/name/${countryInput}`)
                     .then(response => {
                         if (!response.ok) {
                             alert('Country not found');
@@ -93,7 +93,6 @@ countryForm.addEventListener('submit', (event) => {
                     .catch(error => {
                         console.error(`Error fetching data for ${countryName}:`, error);
                     });
-            });
         };
     });
 
