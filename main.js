@@ -1,62 +1,100 @@
-
+const natoCountries = [
+    "albania",
+    "belgium",
+    "bulgaria",
+    "canada",
+    "croatia",
+    "czech Republic",
+    "denmark",
+    "estonia",
+    "france",
+    "germany",
+    "greece",
+    "hungary",
+    "iceland",
+    "italy",
+    "latvia",
+    "lithuania",
+    "luxembourg",
+    "montenegro",
+    "netherlands",
+    "north Macedonia",
+    "norway",
+    "poland",
+    "portugal",
+    "romania",
+    "slovakia",
+    "slovenia",
+    "spain",
+    "turkey",
+    "united Kingdom",
+    "united States"
+];
 const countryForm = document.getElementById('countryForm');
 const countriesDiv = document.getElementById('countries');
 
 
 countryForm.addEventListener('submit', (event) => {
-    event.preventDefault();   
-    const countryInput = document.getElementById('countryInput').value.trim();
+    event.preventDefault(); 
+    const countryInput = document.getElementById('countryInput').value.trim().toLowerCase();
     const countries = countryInput.split(',');
     countriesDiv.innerHTML = '';
+        if (natoCountries.includes(countryInput)){
+            console.log('This is an ally country');
+            const warningMessage = document.getElementById('warningMessage');
+            if (warningMessage) {
+                warningMessage.innerText = 'This is an ally country';
+            }
+        }
+        else{
+            countries.forEach(countryName => {
+                fetch(`https://restcountries.com/v3.1/name/${countryName}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            alert('Country not found');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        const country = data[0];
 
-        countries.forEach(countryName => {
-            fetch(`https://restcountries.com/v3.1/name/${countryName}`)
-                .then(response => {
-                    if (!response.ok) {
-                        alert('Country not found');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const country = data[0];
+                        const countryDiv = document.createElement('div');
+                        const name = document.createElement('h2');
+                        const flag = document.createElement('img');
+                        const capital = document.createElement('p');
+                        const population = document.createElement('p');
+                        const region = document.createElement('p');
+                        const eliminateButton = document.createElement('button');
+                        
+                        eliminateButton.setAttribute("id", "eliminateButton")
+                        
+                        countryDiv.classList.add('country');
+                        population.classList.add("population");
+                        flag.classList.add("flag");
+                        name.classList.add("name");
+                        eliminateButton.classList.add("eliminateButton");
 
-                    console.log(country.name + ' has a population of ' + country.population);
-                    const countryDiv = document.createElement('div');
-                    const name = document.createElement('h2');
-                    const flag = document.createElement('img');
-                    const capital = document.createElement('p');
-                    const population = document.createElement('p');
-                    const region = document.createElement('p');
-                    const eliminateButton = document.createElement('button');
-                    
-                    eliminateButton.setAttribute("id", "eliminateButton")
-                    
-                    countryDiv.classList.add('country');
-                    population.classList.add("population");
-                    flag.classList.add("flag");
-                    name.classList.add("name");
-                    eliminateButton.classList.add("eliminateButton");
+                        flag.src = country.flags.png;
+                        flag.alt = country.name.common;
+                        name.textContent = country.name.common;
+                        capital.textContent = 'Captial: ' + country.capital;
+                        population.textContent = 'Population: ' + country.population;
+                        region.textContent = 'Region: ' + country.region;
+                        eliminateButton.textContent = "Eliminate Country";
 
-                    flag.src = country.flags.png;
-                    flag.alt = country.name.common;
-                    name.textContent = country.name.common;
-                    capital.textContent = 'Captial: ' + country.capital;
-                    population.textContent = 'Population: ' + country.population;
-                    region.textContent = 'Region: ' + country.region;
-                    eliminateButton.textContent = "Eliminate Country";
-
-                    countryDiv.appendChild(name);
-                    countryDiv.appendChild(flag);
-                    countryDiv.appendChild(capital);
-                    countryDiv.appendChild(population);
-                    countryDiv.appendChild(region);
-                    countryDiv.appendChild(eliminateButton);
-                    countriesDiv.appendChild(countryDiv);
-                })
-                .catch(error => {
-                    console.error(`Error fetching data for ${countryName}:`, error);
-                });
-        });
+                        countryDiv.appendChild(name);
+                        countryDiv.appendChild(flag);
+                        countryDiv.appendChild(capital);
+                        countryDiv.appendChild(population);
+                        countryDiv.appendChild(region);
+                        countryDiv.appendChild(eliminateButton);
+                        countriesDiv.appendChild(countryDiv);
+                    })
+                    .catch(error => {
+                        console.error(`Error fetching data for ${countryName}:`, error);
+                    });
+            });
+        };
     });
 
 countriesDiv.addEventListener('click', (event) => {
