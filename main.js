@@ -37,7 +37,6 @@ const countriesDiv = document.getElementById('countries');
 countryForm.addEventListener('submit', (event) => {
     event.preventDefault(); 
     const countryInput = document.getElementById('countryInput').value.trim().toLowerCase();
-    const countries = countryInput.split(',');
     countriesDiv.innerHTML = '';
         if (natoCountries.includes(countryInput)){
             console.log('This is an ally country');
